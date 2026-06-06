@@ -13,17 +13,14 @@
   <style>
     :root {
       --cream: #fff8ef;
-      --cream-soft: #fffdf8;
       --peach: #ffd7c2;
-      --peach-soft: #ffe7da;
       --pink: #ffdce9;
-      --pink-soft: #fff0f6;
       --rose: #d85d86;
       --rose-dark: #b84068;
       --brown: #4d3540;
       --muted: #846b74;
       --glass: rgba(255, 255, 255, 0.34);
-      --glass-strong: rgba(255, 255, 255, 0.48);
+      --glass-strong: rgba(255, 255, 255, 0.5);
       --border: rgba(255, 255, 255, 0.64);
       --shadow: 0 28px 80px rgba(116, 62, 78, 0.18);
       --shadow-soft: 0 18px 46px rgba(116, 62, 78, 0.12);
@@ -218,7 +215,7 @@
     }
 
     .glass-card {
-      width: min(100%, 760px);
+      width: min(100%, 820px);
       min-height: min(78dvh, 720px);
       border-radius: 34px;
       background: var(--glass);
@@ -323,7 +320,7 @@
     }
 
     .lead {
-      max-width: 560px;
+      max-width: 600px;
       margin: 24px auto 0;
       color: var(--muted);
       font-size: clamp(16px, 4vw, 20px);
@@ -370,85 +367,74 @@
       box-shadow: 0 18px 42px rgba(223, 125, 131, 0.25);
     }
 
-    .timeline-title {
-      font-size: clamp(42px, 12vw, 72px);
-      text-align: center;
-      margin-bottom: 24px;
+    .event-layout {
+      display: grid;
+      gap: 26px;
+      align-items: center;
     }
 
-    .timeline {
-      position: relative;
-      width: 100%;
-      padding: 6px 0 4px 22px;
+    .event-icon {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 34px;
+      font-size: 54px;
+      background: rgba(255, 255, 255, 0.36);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: var(--shadow-soft);
+      animation: iconFloat 3.8s ease-in-out infinite;
     }
 
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 9px;
-      top: 14px;
-      bottom: 16px;
-      width: 3px;
-      border-radius: 999px;
-      background: linear-gradient(to bottom, rgba(216, 93, 134, 0.54), rgba(255, 184, 150, 0.8), rgba(216, 93, 134, 0.44));
-      box-shadow: 0 0 18px rgba(216, 93, 134, 0.18);
+    @keyframes iconFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+      50% {
+        transform: translateY(-12px) rotate(2deg);
+      }
     }
 
-    .timeline-item {
-      position: relative;
-      padding: 0 0 18px 22px;
-    }
-
-    .timeline-item:last-child {
-      padding-bottom: 0;
-    }
-
-    .dot {
-      position: absolute;
-      left: -23px;
-      top: 10px;
-      width: 21px;
-      height: 21px;
-      border-radius: 50%;
-      background: #fff;
-      border: 5px solid var(--rose);
-      box-shadow: 0 0 0 8px rgba(216, 93, 134, 0.12);
-    }
-
-    .timeline-mini-card {
-      padding: 16px 16px 15px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.54);
-      box-shadow: 0 14px 34px rgba(116, 62, 78, 0.11);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    .time {
+    .event-time {
       display: inline-flex;
-      padding: 7px 11px;
+      padding: 8px 14px;
+      margin-bottom: 16px;
       border-radius: 999px;
-      margin-bottom: 9px;
-      color: var(--rose-dark);
       background: rgba(255, 255, 255, 0.42);
-      border: 1px solid rgba(255, 255, 255, 0.52);
-      font-size: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      color: var(--rose-dark);
+      font-size: 14px;
       font-weight: 800;
+      box-shadow: var(--shadow-soft);
     }
 
-    .timeline-mini-card h3 {
-      font-size: clamp(19px, 5.4vw, 26px);
-      line-height: 1.2;
-      margin-bottom: 7px;
-      color: var(--brown);
+    .event-title {
+      font-size: clamp(48px, 13vw, 86px);
+      margin-bottom: 18px;
     }
 
-    .timeline-mini-card p {
+    .event-text {
+      max-width: 620px;
+      margin: 0 auto;
       color: var(--muted);
-      font-size: clamp(14px, 3.8vw, 16px);
-      line-height: 1.55;
+      font-size: clamp(16px, 4vw, 20px);
+      line-height: 1.72;
       font-weight: 600;
+    }
+
+    .route-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.52);
+      color: var(--rose-dark);
+      font-size: 14px;
+      font-weight: 800;
     }
 
     .night-card {
@@ -462,51 +448,23 @@
     }
 
     .night-card h2,
-    .night-card .night-title {
+    .night-card .event-title {
       color: #fff7fb;
       text-shadow: 0 0 24px rgba(255, 190, 222, 0.22);
     }
 
-    .night-card .tag {
+    .night-card .tag,
+    .night-card .event-time,
+    .night-card .route-mini,
+    .night-card .event-icon {
       color: #ffe4ef;
       background: rgba(255, 255, 255, 0.13);
       border-color: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 0 28px rgba(255, 185, 214, 0.14);
     }
 
-    .night-card .lead {
+    .night-card .event-text {
       color: rgba(255, 247, 251, 0.84);
-    }
-
-    .night-icon {
-      width: 98px;
-      height: 98px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 22px;
-      border-radius: 32px;
-      font-size: 48px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow:
-        0 0 30px rgba(255, 179, 215, 0.18),
-        inset 0 0 22px rgba(255, 255, 255, 0.06);
-      animation: iconFloat 3.8s ease-in-out infinite;
-    }
-
-    @keyframes iconFloat {
-      0%, 100% {
-        transform: translateY(0) rotate(-2deg);
-      }
-      50% {
-        transform: translateY(-12px) rotate(2deg);
-      }
-    }
-
-    .night-title {
-      font-family: "Dancing Script", cursive;
-      font-size: clamp(48px, 13vw, 88px);
-      line-height: 0.98;
-      margin-bottom: 20px;
     }
 
     .confession-card {
@@ -691,6 +649,42 @@
       box-shadow: 0 14px 34px rgba(196, 63, 112, 0.25);
     }
 
+    @media (min-width: 860px) {
+      .event-layout {
+        grid-template-columns: 0.8fr 1.2fr;
+        text-align: left;
+      }
+
+      .event-icon {
+        width: 170px;
+        height: 170px;
+        font-size: 78px;
+        margin: 0 auto;
+        border-radius: 46px;
+      }
+
+      .event-text {
+        margin-left: 0;
+      }
+
+      .event-title {
+        margin-bottom: 20px;
+      }
+
+      .event-copy {
+        max-width: 560px;
+      }
+
+      .event-copy.center {
+        text-align: center;
+        max-width: 100%;
+      }
+
+      .event-copy.center .event-text {
+        margin: 0 auto;
+      }
+    }
+
     @media (max-width: 520px) {
       .slide {
         padding: 16px;
@@ -720,21 +714,15 @@
         }
       }
 
-      .timeline-title {
-        margin-bottom: 18px;
+      .event-icon {
+        width: 96px;
+        height: 96px;
+        font-size: 46px;
+        border-radius: 30px;
       }
 
-      .timeline {
-        padding-left: 18px;
-      }
-
-      .timeline-item {
-        padding-left: 18px;
-        padding-bottom: 14px;
-      }
-
-      .timeline-mini-card {
-        padding: 14px 14px;
+      .event-title {
+        font-size: clamp(46px, 14vw, 70px);
       }
 
       .button-zone {
@@ -758,12 +746,24 @@
         padding-bottom: 22px;
       }
 
-      .timeline-mini-card {
-        padding: 12px 13px;
+      .event-icon {
+        width: 82px;
+        height: 82px;
+        font-size: 40px;
+        margin-bottom: 14px;
       }
 
-      .timeline-mini-card p {
-        line-height: 1.42;
+      .event-title {
+        margin-bottom: 12px;
+      }
+
+      .event-text {
+        line-height: 1.55;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        margin-top: 22px;
       }
 
       .button-zone {
@@ -808,58 +808,77 @@
 
     <section class="slide" data-slide="1">
       <div class="glass-card">
-        <div class="content">
-          <h2 class="timeline-title">Lịch trình ban ngày</h2>
+        <div class="content event-layout">
+          <div class="event-icon">🚇</div>
 
-          <div class="timeline">
-            <div class="timeline-item">
-              <span class="dot"></span>
-              <div class="timeline-mini-card">
-                <div class="time">13:00</div>
-                <h3>Điểm chạm đầu tiên</h3>
-                <p>Triệu đón em tại Ga Metro Bến Thành nhé.</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <span class="dot"></span>
-              <div class="timeline-mini-card">
-                <div class="time">Buổi chiều</div>
-                <h3>Món quà nhỏ</h3>
-                <p>Cùng ghé PNJ Silver Trần Quang Khải hoặc Nguyễn Đình Chiểu để Triệu tự tay chọn cho em một chiếc vòng cổ thật xinh.</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <span class="dot"></span>
-              <div class="timeline-mini-card">
-                <div class="time">15:00</div>
-                <h3>Nạp năng lượng</h3>
-                <p>Thưởng thức lẩu Haidilao tại Vincom Đồng Khởi.</p>
-              </div>
-            </div>
+          <div class="event-copy">
+            <div class="event-time">13:00</div>
+            <h2 class="event-title">Điểm chạm đầu tiên</h2>
+            <p class="event-text">
+              Triệu sẽ đón em tại Ga Metro Bến Thành. Mình bắt đầu ngày hôm đó thật nhẹ nhàng, từ một điểm hẹn nhỏ nhưng đáng nhớ nhé.
+            </p>
+            <div class="route-mini">Ga Metro Bến Thành · Bắt đầu hành trình</div>
+            <button class="primary-btn next-btn">Đi lựa vòng cổ nhé</button>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="center">
+    <section class="slide" data-slide="2">
+      <div class="glass-card">
+        <div class="content event-layout">
+          <div class="event-icon">💎</div>
+
+          <div class="event-copy">
+            <div class="event-time">Buổi chiều</div>
+            <h2 class="event-title">Món quà nhỏ</h2>
+            <p class="event-text">
+              Mình cùng ghé PNJ Silver Trần Quang Khải hoặc Nguyễn Đình Chiểu để Triệu tự tay chọn cho em một chiếc vòng cổ thật xinh.
+            </p>
+            <div class="route-mini">PNJ Silver · Trần Quang Khải / Nguyễn Đình Chiểu</div>
+            <button class="secondary-btn next-btn">Đi ăn thôi em</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="3">
+      <div class="glass-card">
+        <div class="content event-layout">
+          <div class="event-icon">🍲</div>
+
+          <div class="event-copy">
+            <div class="event-time">15:00</div>
+            <h2 class="event-title">Nạp năng lượng</h2>
+            <p class="event-text">
+              Mình sẽ thưởng thức lẩu Haidilao tại Vincom Đồng Khởi. Một bữa ăn ấm áp, vài câu chuyện nhỏ và một buổi chiều thật dễ chịu.
+            </p>
+            <div class="route-mini">Haidilao · Vincom Đồng Khởi</div>
             <button class="secondary-btn next-btn">Buổi tối đi đâu nhỉ?</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="slide deep" data-slide="2">
-      <div class="glass-card night-card center">
-        <div class="content">
-          <div class="night-icon">🍸</div>
-          <div class="tag">18:30 · Chút men say</div>
-          <h2 class="night-title">TO Hidden Bar</h2>
-          <p class="lead">Chúng mình có mặt tại TO Hidden Bar để nhâm nhi vài ly, trò chuyện và thư giãn.</p>
-          <button class="primary-btn next-btn">Và còn một điều nữa...</button>
+    <section class="slide deep" data-slide="4">
+      <div class="glass-card night-card">
+        <div class="content event-layout">
+          <div class="event-icon">🍸</div>
+
+          <div class="event-copy">
+            <div class="event-time">18:30</div>
+            <h2 class="event-title">Chút men say</h2>
+            <p class="event-text">
+              Chúng mình có mặt tại TO Hidden Bar để nhâm nhi vài ly, trò chuyện và thư giãn. Không gian sẽ dịu hơn một chút, để cuối ngày có thể nói vài điều thật lòng hơn.
+            </p>
+            <div class="route-mini">TO Hidden Bar · Một buổi tối thật dịu</div>
+            <button class="primary-btn next-btn">Và còn một điều nữa...</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="slide bright" data-slide="3">
+    <section class="slide bright" data-slide="5">
       <div class="glass-card confession-card center">
         <div class="content">
           <div class="confession-kicker">Điều cuối cùng...</div>
@@ -877,6 +896,8 @@
 
   <div class="progress" aria-hidden="true">
     <span class="active"></span>
+    <span></span>
+    <span></span>
     <span></span>
     <span></span>
     <span></span>
